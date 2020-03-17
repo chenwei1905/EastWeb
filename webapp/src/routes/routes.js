@@ -1,4 +1,4 @@
-import {view as Login } from '../views/Login/index';
+import  {view as Login} from '../views/Login/index';
 import Home from '../views/Home'
 
 

@@ -9,16 +9,23 @@ import Svg from "./echarts/Svg";
 import Dynamic from "./echarts/Dynamic";
 import RouteManagement from "./routes/index";
 
+import 'antd/dist/antd.css';
+import 'ant-design-pro/dist/ant-design-pro.css';
+import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
+import './assets/css/common.css';
+
+
 import { Provider } from "react-redux";
 
 // const store = createStore(reducer, initialState, storeEnhancers);
 
 ReactDOM.render(
-    <Provider >
+  
         <BrowserRouter>
             <RouteManagement />
         </BrowserRouter>
-    </Provider>,
+    ,
     document.getElementById("root")
 );
 

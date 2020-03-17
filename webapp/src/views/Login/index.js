@@ -1,4 +1,4 @@
 
-import view from './view';
+import {Login  as view }from './view';
 
 export {view};

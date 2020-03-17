@@ -8,7 +8,7 @@ import styles from "./login.css";
 
 const FormItem = Form.Item;
 
-const LoginPage = ({ login }) => {
+const Login = (props) => {
     let userNameInput = null;
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
@@ -18,54 +18,26 @@ const LoginPage = ({ login }) => {
         setUserName("");
     };
 
-    const gotoLogin = e => {
-        e.preventDefault();
-        login({ userName, password });
-    };
+    // const gotoLogin = e => {
+    //     e.preventDefault();
+    //     login({ userName, password });
+    // };
+
+    const login = () => {
+        //注意加上请求
+        console.log(userName);
+        alert("hhhh")
+        props.history.push("/Home");
+    }
 
     const userNameSuffix = userName ? (
         <Icon type="close-circle" onClick={emitEmptyUserName} />
     ) : null;
-
     return (
         <>
-            <div className={styles.header}>
-                <div className={styles["header-wrapper"]}>
-                    <header>
-                        <a href="/">
-                            <img src={logo} alt="ant design mini" />
-                            <h2>React Dev Dnd</h2>
-                        </a>
-                        <div className={styles["nav-wrapper"]}>
-                            <nav>
-                                <ul>
-                                    <li>
-                                        <a
-                                            href="https://zhuanlan.zhihu.com/rr1024"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            帮助
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="https://github.com/sunnut/react-easy-start"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                        >
-                                            Github
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                    </header>
-                </div>
-            </div>
-
+         
             <div className={styles.content}>
-                <Form onSubmit={gotoLogin} className={styles["login-form"]}>
+                <Form onSubmit={login} className={styles["login-form"]}>
                     <h3>欢迎登陆</h3>
                     <FormItem>
                         <Input
@@ -97,6 +69,7 @@ const LoginPage = ({ login }) => {
                             type="primary"
                             htmlType="submit"
                             className={styles["login-form-button"]}
+                            onClick={login}
                         >
                             登陆
                         </Button>
@@ -111,13 +84,4 @@ const LoginPage = ({ login }) => {
     );
 };
 
-const loginAction = {type: 'login'}
-
-const mapDispachToProps = (dispatch, props) => ({
-    login: (formValue) => {
-        //等待
-        dispatch(loginActions.login(formValue, props.history));
-    }
-});
-
-export default connect(null, mapDispachToProps)(LoginPage);
+export {Login};
