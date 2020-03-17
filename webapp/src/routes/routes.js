@@ -1,4 +1,5 @@
-import Login from '../views/Login';
+import {view as Login } from '../views/Login/index';
+import Home from '../views/Home'
 
 
 
@@ -9,6 +10,10 @@ const routeConfig = [
 
   { path: '/Login',
     component: Login,
+  },
+
+  { path: '/Home',
+    component: Home,
   },
 
 ]
