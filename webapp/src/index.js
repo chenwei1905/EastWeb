@@ -11,8 +11,6 @@ import RouteManagement from "./routes/index";
 
 import 'antd/dist/antd.css';
 import 'ant-design-pro/dist/ant-design-pro.css';
-import 'react-grid-layout/css/styles.css';
-import 'react-resizable/css/styles.css';
 import './assets/css/common.css';
 
 

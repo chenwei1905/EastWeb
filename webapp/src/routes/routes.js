@@ -1,5 +1,6 @@
 import  {view as Login} from '../views/Login/index';
-import Home from '../views/Home'
+import HomeBack from '../views/HomeBack'
+import Home from '../views/Home';
 
 
 
