@@ -2,6 +2,7 @@ import { Layout, Menu} from "antd";
 import Icon from '@ant-design/icons';
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
+import './sidebar.css'
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
@@ -20,9 +21,9 @@ const mySidebar = props => {
     
 
     return (
-        <Sider trigger={null} collapsible collapsed={'false'}>
+        <Sider trigger={null} collapsible collapsed={'true'} >
             <div className="logo" />
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
+            <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]} >
                 {urldata.map(item => {
                     if (item.children instanceof Array) {
                         return (
