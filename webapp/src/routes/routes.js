@@ -15,7 +15,7 @@ const routeConfig = [
   },
 
   { path: '/Home',
-    component: Home,
+    component: Home1,
   },
 
 ]

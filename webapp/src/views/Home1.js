@@ -1,4 +1,6 @@
-import { Layout, Menu } from 'antd';
+import { Layout } from 'antd';
+
+
 import React  from "react";
 import {
   MenuUnfoldOutlined,
@@ -7,9 +9,9 @@ import {
   VideoCameraOutlined,
   UploadOutlined,
 } from '@ant-design/icons';
-import './home.css'
 
-const { Header, Sider, Content } = Layout;
+
+const { Header, Footer, Sider, Content } = Layout;
 
 class Home1 extends React.Component {
   state = {
@@ -24,42 +26,10 @@ class Home1 extends React.Component {
 
   render() {
     return (
-      <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
-          <div className="logo" />
-          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="1">
-              <UserOutlined />
-              <span>nav 1</span>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <VideoCameraOutlined />
-              <span>nav 2</span>
-            </Menu.Item>
-            <Menu.Item key="3">
-              <UploadOutlined />
-              <span>nav 3</span>
-            </Menu.Item>
-          </Menu>
-        </Sider>
-        <Layout className="site-layout">
-          <Header className="site-layout-background" style={{ padding: 0 }}>
-            {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-              className: 'trigger',
-              onClick: this.toggle,
-            })}
-          </Header>
-          <Content
-            className="site-layout-background"
-            style={{
-              margin: '24px 16px',
-              padding: 24,
-              minHeight: 280,
-            }}
-          >
-            Content
-          </Content>
-        </Layout>
+        <Layout>
+        <Header>Header</Header>
+        <Content>Content</Content>
+        <Footer>Footer</Footer>
       </Layout>
     );
   }
