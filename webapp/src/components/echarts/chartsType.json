@@ -1,0 +1,13 @@
+[{
+    "name": "bar-chart",
+    "icon": "bar-chart",
+    "title": "柱状图"
+  }, {
+    "name": "line-chart",
+    "icon": "line-chart",
+    "title": "线状图"
+  }, {
+    "name": "pie-chart",
+    "icon": "pie-chart",
+    "title": "饼图"
+  }]
