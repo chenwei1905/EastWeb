@@ -16,6 +16,8 @@ import {
 } from "@ant-design/icons";
 import tabsData from "./../components/layout/content/tabsContent.json";
 
+import fileUtil from "./../utils/file/fileUtil";
+
 const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 const { TabPane } = Tabs;
@@ -23,15 +25,58 @@ const { TabPane } = Tabs;
 class Home1 extends React.Component {
     constructor(props) {
         super(props);
-        this.callback = this.callback.bind(this);
+        this.newTabIndex = 0;
         this.state = {
-          tabsData: tabsData
-        }
+            tabsData: tabsData,
+            activeKey: tabsData[0].key,
+        };
+        this.onChange = this.onChange.bind(this);
+        this.onEdit = this.onEdit.bind(this);
+        this.add = this.add.bind(this);
+        this.remove = this.remove.bind(this);
     }
 
-    callback(key) {
-        console.log(key);
-    }
+    onChange = activeKey => {
+      this.setState({ activeKey });
+      alert("hhhh")
+    };
+
+    onEdit = (targetKey, action) => {
+      this[action](targetKey);
+    };
+
+    add = () => {
+      const { tabsData } = this.state;
+      const activeKey = `newTab${this.newTabIndex++}`;
+      tabsData.push({ title: 'New Tab', content: 'New Tab Pane', key: activeKey });
+      this.setState({ tabsData, activeKey });
+      //fs不允许在浏览器中执行
+      //fileUtil(this.state.tabsData, "./../components/layout/content/tabsContent.json").write();
+    };
+
+    remove = targetKey => {
+    
+      let { activeKey } = this.state;
+      let lastIndex;
+      this.state.tabsData.forEach((pane, i) => {
+        if (pane.key === targetKey) {
+          lastIndex = i - 1;
+        }
+      });
+      const tabsData = this.state.tabsData.filter(pane => pane.key !== targetKey);
+      if (tabsData.length && activeKey === targetKey) {
+        if (lastIndex >= 0) {
+          activeKey = tabsData[lastIndex].key;
+        } else {
+          activeKey = tabsData[0].key;
+        }
+      }
+      this.setState({ tabsData, activeKey });
+      //fs模块不能在浏览器中执行
+      //fileUtil(this.state.tabsData, "./../components/layout/content/tabsContent.json").write();
+  
+    };
+  
 
     render() {
         return (
@@ -54,7 +99,7 @@ class Home1 extends React.Component {
                             Hello world
                         </Col>
                         <Col span={4}>
-                            <Button icon={<FileOutlined />}>打开</Button>
+                            <Button icon={<FileOutlined />} onClick={this.add}>打开</Button>
                             <Button icon={<FileAddOutlined />}>增加</Button>
                         </Col>
                         <Col span={12}>
@@ -78,7 +123,14 @@ class Home1 extends React.Component {
                     >
                         <Row align="middle" justify="left">
                             <Col span={20}>
-                                <Tabs onChange={this.callback} type="card">
+                                <Tabs
+                                   
+                                    onChange={this.onChange}
+                                    activeKey={this.state.activeKey}
+                                    type="editable-card"
+                                    onEdit={this.onEdit}
+                                    onTabClick={()=> {alert("hhh")}}
+                                >
                                     {this.state.tabsData.map(pane => (
                                         <TabPane
                                             tab={pane.title}

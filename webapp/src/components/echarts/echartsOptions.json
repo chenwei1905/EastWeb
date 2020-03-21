@@ -1,0 +1,9 @@
+{
+    "title" : {"id": [], "show": ["false", "true"]},
+    "legend": {},
+    "grid": {},
+    "xAxis": {},
+    "yAxis": {},
+    "toolbox": {},
+    "series": [{"type":"line"}, {"type": "pie","id":[],"name":[]}]
+}

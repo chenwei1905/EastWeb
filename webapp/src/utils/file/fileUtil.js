@@ -1,11 +1,11 @@
-var fs = require(fs);
+import fs from 'fs'
 
-export default fileUtil = (jsonData,filePath) => {
+const fileUtil = (jsonData,filePath) => {
 
-    write = (jsonData, filePath) => {
+    const write = (jsonData, filePath) => {
         let jsonResult = JSON.stringify(jsonData, "", "\t");
 
-        fs.writeFile(filePath, jsonResult, (err) => {
+        fs.writeFile(filePath, jsonResult, function(err)  {
             if(err) {
                 console.log(err);
             } else {
@@ -19,3 +19,5 @@ export default fileUtil = (jsonData,filePath) => {
     }
    
 }
+
+export default fileUtil;
