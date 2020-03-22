@@ -1,4 +1,4 @@
-import { Layout, Button, Menu, Row, Col, Tabs } from "antd";
+import { Layout, Dropdown, Button, Menu, Row, Col, Tabs } from "antd";
 
 import React from "react";
 import {
@@ -22,6 +22,28 @@ const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 const { TabPane } = Tabs;
 
+function handleMenuClick(e) {
+    // message.info('Click on menu item.');
+    console.log('click', e);
+  }
+
+const menu = (
+    <Menu onClick={handleMenuClick}>
+      <Menu.Item key="1">
+        <UserOutlined />
+        1st menu item
+      </Menu.Item>
+      <Menu.Item key="2">
+        <UserOutlined />
+        2nd menu item
+      </Menu.Item>
+      <Menu.Item key="3">
+        <UserOutlined />
+        3rd item
+      </Menu.Item>
+    </Menu>
+  );
+
 class Home1 extends React.Component {
     constructor(props) {
         super(props);
@@ -35,48 +57,48 @@ class Home1 extends React.Component {
         this.add = this.add.bind(this);
         this.remove = this.remove.bind(this);
     }
-
+    
     onChange = activeKey => {
-      this.setState({ activeKey });
-      alert("hhhh")
+        this.setState({ activeKey });
+        alert("hhhh")
     };
 
     onEdit = (targetKey, action) => {
-      this[action](targetKey);
+        this[action](targetKey);
     };
 
     add = () => {
-      const { tabsData } = this.state;
-      const activeKey = `newTab${this.newTabIndex++}`;
-      tabsData.push({ title: 'New Tab', content: 'New Tab Pane', key: activeKey });
-      this.setState({ tabsData, activeKey });
-      //fs不允许在浏览器中执行
-      //fileUtil(this.state.tabsData, "./../components/layout/content/tabsContent.json").write();
+        const { tabsData } = this.state;
+        const activeKey = `newTab${this.newTabIndex++}`;
+        tabsData.push({ title: 'New Tab', content: 'New Tab Pane', key: activeKey });
+        this.setState({ tabsData, activeKey });
+        //fs不允许在浏览器中执行
+        //fileUtil(this.state.tabsData, "./../components/layout/content/tabsContent.json").write();
     };
 
     remove = targetKey => {
-    
-      let { activeKey } = this.state;
-      let lastIndex;
-      this.state.tabsData.forEach((pane, i) => {
-        if (pane.key === targetKey) {
-          lastIndex = i - 1;
+
+        let { activeKey } = this.state;
+        let lastIndex;
+        this.state.tabsData.forEach((pane, i) => {
+            if (pane.key === targetKey) {
+                lastIndex = i - 1;
+            }
+        });
+        const tabsData = this.state.tabsData.filter(pane => pane.key !== targetKey);
+        if (tabsData.length && activeKey === targetKey) {
+            if (lastIndex >= 0) {
+                activeKey = tabsData[lastIndex].key;
+            } else {
+                activeKey = tabsData[0].key;
+            }
         }
-      });
-      const tabsData = this.state.tabsData.filter(pane => pane.key !== targetKey);
-      if (tabsData.length && activeKey === targetKey) {
-        if (lastIndex >= 0) {
-          activeKey = tabsData[lastIndex].key;
-        } else {
-          activeKey = tabsData[0].key;
-        }
-      }
-      this.setState({ tabsData, activeKey });
-      //fs模块不能在浏览器中执行
-      //fileUtil(this.state.tabsData, "./../components/layout/content/tabsContent.json").write();
-  
+        this.setState({ tabsData, activeKey });
+        //fs模块不能在浏览器中执行
+        //fileUtil(this.state.tabsData, "./../components/layout/content/tabsContent.json").write();
+
     };
-  
+
 
     render() {
         return (
@@ -104,9 +126,11 @@ class Home1 extends React.Component {
                         </Col>
                         <Col span={12}>
                             {" "}
-                            <Button icon={<AreaChartOutlined />}>
-                                插入图表
-                            </Button>
+                            <Dropdown overlay={menu}>
+                                <Button icon={<AreaChartOutlined />}>
+                                    插入图表
+                                </Button>
+                            </Dropdown>
                         </Col>{" "}
                         <Col span={4}>
                             <Button icon={<EditOutlined />}></Button>
@@ -124,12 +148,12 @@ class Home1 extends React.Component {
                         <Row align="middle" justify="left">
                             <Col span={20}>
                                 <Tabs
-                                   
+
                                     onChange={this.onChange}
                                     activeKey={this.state.activeKey}
                                     type="editable-card"
                                     onEdit={this.onEdit}
-                                    onTabClick={()=> {alert("hhh")}}
+                                    onTabClick={() => { alert("hhh") }}
                                 >
                                     {this.state.tabsData.map(pane => (
                                         <TabPane

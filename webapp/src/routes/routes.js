@@ -4,10 +4,13 @@ import Home from '../views/Home';
 import Home1 from '../views/Home1';
 
 
+import View from '../components/echarts/index'
+
+
 
 const routeConfig = [
   { path: '/',
-    component: Login,
+    component: View,
   },
 
   { path: '/Login',
