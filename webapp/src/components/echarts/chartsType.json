@@ -1,13 +1,16 @@
 [{
-    "name": "bar-chart",
+    "name": "Echart1",
     "icon": "bar-chart",
-    "title": "柱状图"
+    "title": "柱状图",
+    "index" : "0"
   }, {
-    "name": "line-chart",
+    "name": "Echart2",
     "icon": "line-chart",
-    "title": "线状图"
+    "title": "线状图",
+    "index": "1"
   }, {
-    "name": "pie-chart",
+    "name": "Echart3",
     "icon": "pie-chart",
-    "title": "饼图"
+    "title": "饼图",
+    "index": "2"
   }]

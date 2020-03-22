@@ -1,8 +1,29 @@
 import BaseEchart from './baseEchart';
 import React, { PureComponent } from 'react';
+import { Layout, Dropdown, Button, Menu, Row, Col, Tabs } from "antd";
+import {
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
+    UserOutlined,
+    VideoCameraOutlined,
+    UploadOutlined,
+    GithubOutlined,
+    SearchOutlined,
+    FileAddOutlined,
+    FileOutlined,
+    AreaChartOutlined,
+    EditOutlined
+} from "@ant-design/icons";
+
+
 
 
 const View = () => {
+
+    function handleMenuClick(e) {
+        // message.info('Click on menu item.');
+        console.log('click', e);
+    }
 
     let xAxisValue = ['电子元件', '汽车行业', '通讯行业', '机械行业', '家电行业', '电子信息',
         '医疗行业', '输配电气', '安防设备', '纺织服装', '金属制品', '交运设备', '仪器仪表',
@@ -74,7 +95,7 @@ const View = () => {
 
         },
         color: ['rgba(128, 128, 128, 0.5)', 'red', '#61a0a8', '#d48265', '#91c7ae', '#749f83', '#ca8622', '#bda29a', '#6e7074', '#546570', '#c4ccd3'],
-        
+
         series: [{
 
             type: 'bar',
@@ -82,7 +103,7 @@ const View = () => {
             barWidth: '30%'
         }, {
 
-            type: 'bar',
+            type: 'scatter',
             symbolSize: 15,
         },
         {
@@ -111,13 +132,47 @@ const View = () => {
 
     }
 
+    const menu = (
+        <Menu onClick={handleMenuClick}>
+
+            {seriesName.map((item, index) => (<Menu.Item key={index}>
+                <UserOutlined />
+                {item}
+            </Menu.Item>))}
+
+
+
+        </Menu>
+    );
+
 
     return (
-        <div className='examples'>
-            <div className='parent'>
-                <BaseEchart echartsConfig={echartsConfig} xAxisValue={xAxisValue} yAxisValue={yAxisValue} seriesDatas={seriesDatas} seriesName={seriesName} />
-            </div>
-        </div>
+        <Layout>
+            <Layout
+                style={{
+                    paddingTop: 10,
+                    marginBottom: 10
+                }}
+            >
+                <Row >
+                    <Col span={16}>
+                        <BaseEchart echartsConfig={echartsConfig} xAxisValue={xAxisValue} yAxisValue={yAxisValue} seriesDatas={seriesDatas} seriesName={seriesName} />
+
+                    </Col>
+                    <Col span={8}>
+                        <Row  >
+                            <Dropdown overlay={menu}>
+                                <Button icon={<AreaChartOutlined />}>
+                                    系列数据设置
+                                </Button>
+                            </Dropdown>
+                        </Row>
+
+                    </Col>
+                </Row>
+            </Layout>
+        </Layout>
+
     )
 
 }

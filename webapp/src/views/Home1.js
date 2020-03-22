@@ -16,33 +16,28 @@ import {
 } from "@ant-design/icons";
 import tabsData from "./../components/layout/content/tabsContent.json";
 
+
 import fileUtil from "./../utils/file/fileUtil";
+//引进图表类型配置
+import chartsType from "../components/echarts/chartsType.json"
+/**
+ * 引用对象类型
+ */
+import Echart1 from "./../components/echarts/echart1";
+import Echart2 from "./../components/echarts/echart2";
+import Echart3 from "./../components/echarts/echart3";
+
+import View from "./../components/echarts/index"
+
+
+
 
 const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 const { TabPane } = Tabs;
 
-function handleMenuClick(e) {
-    // message.info('Click on menu item.');
-    console.log('click', e);
-  }
 
-const menu = (
-    <Menu onClick={handleMenuClick}>
-      <Menu.Item key="1">
-        <UserOutlined />
-        1st menu item
-      </Menu.Item>
-      <Menu.Item key="2">
-        <UserOutlined />
-        2nd menu item
-      </Menu.Item>
-      <Menu.Item key="3">
-        <UserOutlined />
-        3rd item
-      </Menu.Item>
-    </Menu>
-  );
+
 
 class Home1 extends React.Component {
     constructor(props) {
@@ -56,11 +51,12 @@ class Home1 extends React.Component {
         this.onEdit = this.onEdit.bind(this);
         this.add = this.add.bind(this);
         this.remove = this.remove.bind(this);
+        this.handleMenuClick = this.handleMenuClick.bind(this);
+      
     }
-    
+
     onChange = activeKey => {
         this.setState({ activeKey });
-        alert("hhhh")
     };
 
     onEdit = (targetKey, action) => {
@@ -98,9 +94,37 @@ class Home1 extends React.Component {
         //fileUtil(this.state.tabsData, "./../components/layout/content/tabsContent.json").write();
 
     };
-
+    /**
+     * 插入表格
+     */
+    handleMenuClick =(e) =>{
+        // message.info('Click on menu item.');
+        console.log('click', e);
+        console.log(chartsType[e.key].name)
+        console.log(chartsType);
+        console.log("+++++++被点击的页面是++++++++")
+        console.log(this.state.activeKey);
+        this.state.tabsData[this.state.activeKey].content = (<View />);
+        this.setState({
+            tabsData: this.state.tabsData
+        })
+    
+    }
+   
+    
+    
 
     render() {
+        let menu = (
+            <Menu onClick={this.handleMenuClick}>
+                {chartsType.map((item, index) => (<Menu.Item key={index}>
+        
+                    <UserOutlined />
+                    {item.name}
+        
+                </Menu.Item>))}
+            </Menu>
+        );
         return (
             <Layout>
                 <Layout
@@ -153,7 +177,7 @@ class Home1 extends React.Component {
                                     activeKey={this.state.activeKey}
                                     type="editable-card"
                                     onEdit={this.onEdit}
-                                    onTabClick={() => { alert("hhh") }}
+                                    onTabClick={() => { }}
                                 >
                                     {this.state.tabsData.map(pane => (
                                         <TabPane
