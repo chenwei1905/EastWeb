@@ -18,3 +18,4 @@ const CardItem = props => {
         </div>
     );
 };
+export default CardItem;
