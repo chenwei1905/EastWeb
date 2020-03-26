@@ -5,6 +5,10 @@ import Home1 from "../views/Home1";
 import Grid from "../views/Grid";
 import CardView from "../views/CardView"
 
+import Knight from "../views/Knight";
+import Board from "../views/Board";
+import BoardView from "../views/BoardView";
+
 import View from "../components/echarts/index";
 
 const routeConfig = [
@@ -14,7 +18,10 @@ const routeConfig = [
 
     { path: "/Home", component: Home1 },
     { path: "/Grid", component: Grid  },
-    { path: "/CardView", component: CardView  }
+    { path: "/CardView", component: CardView  },
+    { path: "/Knight", component: Knight  },
+    { path: "/Board", component: BoardView  },
+
 
 ];
 

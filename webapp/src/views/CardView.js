@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import CardItem from "./CardItem";
 import "./CardView.css";
+import HTML5Backend from 'react-dnd-html5-backend';
+
 
 const CardList = [
     {
