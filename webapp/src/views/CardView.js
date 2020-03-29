@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import CardItem from "./CardItem";
 import "./CardView.css";
 import HTML5Backend from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
+
 
 
 const CardList = [
@@ -28,16 +30,20 @@ const CardList = [
 const CardView = () => {
     return (
         <div className="card">
-            {CardList.map((item, index) => {
-                return (
-                    <CardItem //向次级界面传递参数
-                        key={item.id}
-                        title={item.title}
-                        content={item.content}
-                        index={index}
-                    />
-                );
-            })}
+            <DndProvider backend={HTML5Backend}>
+                {CardList.map((item, index) => {
+                    return (
+                        <CardItem //向次级界面传递参数
+                            key={item.id}
+                            title={item.title}
+                            content={item.content}
+                            index={index}
+                        />
+                    );
+                })}
+
+            </DndProvider>
+
         </div>
     );
 };
