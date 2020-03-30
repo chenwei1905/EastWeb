@@ -10,6 +10,9 @@ import Board from "../views/Board";
 import BoardView from "../views/BoardView";
 
 import View from "../components/echarts/index";
+import Game from "../views/Game";
+
+import DustBinView from "../views/DustBinView"
 
 const routeConfig = [
     { path: "/", component: View },
@@ -20,7 +23,11 @@ const routeConfig = [
     { path: "/Grid", component: Grid  },
     { path: "/CardView", component: CardView  },
     { path: "/Knight", component: Knight  },
-    { path: "/Board", component: BoardView  },
+    { path: "/Board", component: Board  },
+    { path: "/BoardView", component: BoardView  },
+    { path: "/Game", component: Game  },
+
+    { path: "/DustBin", component: DustBinView },
 
 
 ];

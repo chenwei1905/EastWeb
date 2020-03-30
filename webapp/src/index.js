@@ -13,13 +13,16 @@ import 'antd/dist/antd.css';
 import 'ant-design-pro/dist/ant-design-pro.css';
 import './assets/css/common.css';
 
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd';
+
 
 import { Provider } from "react-redux";
 
 // const store = createStore(reducer, initialState, storeEnhancers);
 
 ReactDOM.render(
-  
+    
         <BrowserRouter>
             <RouteManagement />
         </BrowserRouter>
