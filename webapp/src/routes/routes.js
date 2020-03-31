@@ -11,8 +11,15 @@ import BoardView from "../views/BoardView";
 
 import View from "../components/echarts/index";
 import Game from "../views/Game";
+/**
+ * react-dnd 测试部分
+ */
+import DustBinView from "../views/DustBinView";
+/**
+ * redux 学习
+ */
 
-import DustBinView from "../views/DustBinView"
+import{render as counter} from "../views/counter/view";
 
 const routeConfig = [
     { path: "/", component: View },
@@ -28,6 +35,8 @@ const routeConfig = [
     { path: "/Game", component: Game  },
 
     { path: "/DustBin", component: DustBinView },
+
+    { path: "/Counter", component: counter },
 
 
 ];
