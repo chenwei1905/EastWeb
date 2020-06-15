@@ -15,6 +15,7 @@ import Game from "../views/Game";
  * react-dnd 测试部分
  */
 import DustBinView from "../views/DustBinView";
+import Parent from "../views/Ref"
 /**
  * redux 学习
  */
@@ -37,6 +38,8 @@ const routeConfig = [
     { path: "/DustBin", component: DustBinView },
 
     { path: "/Counter", component: counter },
+
+    { path: "/Parent", component: Parent}
 
 
 ];
